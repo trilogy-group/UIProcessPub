@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import SignInPage from './pages/SignInPage';
+import SignUpPage from './pages/SignUpPage';
 import MentorHomePage from './pages/MentorHomePage';
-import MentorStudentPage from './pages/MentorStudentPage';
+import MentorMeetingsPage from './pages/MentorMeetingsPage';
 import StudentHomePage from './pages/StudentHomePage';
 import StudentGoalsPage from './pages/StudentGoalsPage';
 import StudentProgressPage from './pages/StudentProgressPage';
@@ -19,17 +20,22 @@ function App() {
   const handleSignOut = () => {
     setUserRole(null);
   };
+  
+  const handleSignUp = (e, userDetails) => {
+    e.preventDefault();
+    // TODO: Implement sign-up functionality
+  };
 
   return (
     <Router>
       <Routes>
         <Route path="/sign-in" element={<SignInPage onSignIn={handleSignIn} />} />
-
+        <Route path="/sign-up" element={<SignUpPage onSignUp={handleSignUp} />} />
         {/* Protected routes with navigation */}
         <Route element={<ProtectedLayout userRole={userRole} onSignOut={handleSignOut} />}>
           <Route index element={<MentorHomePage />} /> // Assuming this is the default page after login
           <Route path="mentor-home" element={<MentorHomePage />} />
-          <Route path="mentor-students" element={<MentorStudentPage />} />
+          <Route path="mentor-meetings" element={<MentorMeetingsPage />} />
           <Route path="student-home" element={<StudentHomePage />} />
           <Route path="student-goals" element={<StudentGoalsPage />} />
           <Route path="student-progress" element={<StudentProgressPage />} />

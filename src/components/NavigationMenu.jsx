@@ -7,7 +7,7 @@ const NavButton = ({ to, children }) => (
   <NavLink
     to={to}
     className={({ isActive }) =>
-      `text-left w-full px-4 py-2 text-sm font-medium text-black rounded-full transition-all duration-150 ${
+      `text-left w-full px-4 py-2 text-base font-medium text-black rounded-full transition-all duration-150 ${
         isActive ? 'bg-white shadow-md' : 'hover:bg-gray-100'
       }`}
   >
@@ -22,7 +22,7 @@ const NavigationMenu = ({ userRole, onSignOut }) => {
   const menuItems = userRole === 'mentor'
     ? [
         { name: 'Mentor Home', path: '/mentor-home' },
-        { name: "Mentor's Students", path: '/mentor-students' },
+        { name: "Mentor's Meetings", path: '/mentor-meetings' },
         // Add other mentor specific items here
       ]
     : [
@@ -52,8 +52,8 @@ const NavigationMenu = ({ userRole, onSignOut }) => {
           <hr className="border-gray-300" /> {/* Horizontal break */}
           <button 
             onClick={handleLogOut} 
-            className="text-left w-full px-4 py-2 text-sm font-medium text-black rounded-full transition-all duration-150 hover:bg-gray-100"
-          >
+            className="text-left w-full px-4 py-2 text-base font-medium text-black rounded-full transition-all duration-150 hover:bg-gray-100"
+          ><i className="fa fa-sign-out sign-out-icon"></i>
             Log Out
           </button>
         </div>

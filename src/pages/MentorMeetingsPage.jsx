@@ -7,29 +7,16 @@ import Portal from '../components/Portal';
 import { motion, AnimatePresence } from 'framer-motion';
 import AddMeetingModal from '../components/AddMeetingModal';
 import MeetingModal from '../components/MeetingModal';
+import { useMeetings } from '../contexts/MeetingsContext';
 
-const Meetings = [
-    { student: 'John Doe', location: 'Online', start: new Date("2023-12-17T03:24:00"), end: new Date("2023-12-17T07:24:00"), title: "Meeting with John Doe" },
-    { student: 'Jane Smith', location: 'Online', start: new Date("2023-12-23T09:30:00"), end: new Date("2023-12-23T10:45:00"), title: "Meeting with Jane Smith" },
-    { student: 'Alice Johnson', location: 'Online', start: new Date("2023-12-28T12:00:00"), end: new Date("2023-12-28T13:15:00"), title: "Meeting with Alice Johnson" },
-];
+
 
 const MentorMeetingsPage = () => {
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [mousePosition, setMousePosition] = useState(0);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
-
-
-    const [meetings, setMeetings] = useState(Meetings);
-
-
-    const handleAddMeeting = (newMeeting) => {
-        // Logic to add the new meeting to your meetings state
-        console.log(newMeeting);
-        setMeetings((meetings) => [...meetings, {student: newMeeting.student, location: newMeeting.location, start: new Date(newMeeting.start), end: new Date(newMeeting.end), title: newMeeting.title}])
-    };
-
+    const { meetings, handleAddMeeting } = useMeetings();
 
     const renderDayHeader = (dateInfo) => {
         // Create a new date object from the dateInfo.date value

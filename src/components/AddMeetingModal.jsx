@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Portal from './Portal';
 
-const AddMeetingModal = ({ selectedDate, onClose, onAddMeeting, mousePosition }) => {
+const AddMeetingModal = ({ selectedDate, onClose, onAddMeeting }) => {
     const [meetingDetails, setMeetingDetails] = useState({
         start: selectedDate.start,
         end: selectedDate.end,
@@ -21,7 +22,7 @@ const AddMeetingModal = ({ selectedDate, onClose, onAddMeeting, mousePosition })
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onAddMeeting(meetingDetails);
+        onAddMeeting({student: meetingDetails.student, location: meetingDetails.location, start: new Date(meetingDetails.start), end: new Date(meetingDetails.end), title: meetingDetails.title});
         onClose();
     };
 
@@ -30,7 +31,6 @@ const AddMeetingModal = ({ selectedDate, onClose, onAddMeeting, mousePosition })
         selectedDate.allDay = e.target.checked;
     };
 
-    const { innerWidth: width, innerHeight: height } = window;
     // Modal animation variants
     const modalVariants = {
         hidden: {

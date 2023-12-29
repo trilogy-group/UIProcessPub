@@ -8,6 +8,11 @@ import StudentHomePage from './pages/StudentHomePage';
 import StudentGoalsPage from './pages/StudentGoalsPage';
 import StudentProgressPage from './pages/StudentProgressPage';
 import NavigationMenu from './components/NavigationMenu';
+import { MeetingsProvider } from './contexts/MeetingsContext';
+import StudentPage from './pages/StudentPage';
+import AccountPage from './pages/AccountPage';
+import MentorStudentPage from './pages/MentorStudentPage';
+import MentorProgressPage from './pages/MentorProgressPage';
 // Import other necessary components...
 
 function App() {
@@ -20,29 +25,35 @@ function App() {
   const handleSignOut = () => {
     setUserRole(null);
   };
-  
+
   const handleSignUp = (e, userDetails) => {
     e.preventDefault();
     // TODO: Implement sign-up functionality
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/sign-in" element={<SignInPage onSignIn={handleSignIn} />} />
-        <Route path="/sign-up" element={<SignUpPage onSignUp={handleSignUp} />} />
-        {/* Protected routes with navigation */}
-        <Route element={<ProtectedLayout userRole={userRole} onSignOut={handleSignOut} />}>
-          <Route index element={<MentorHomePage />} /> // Assuming this is the default page after login
-          <Route path="mentor-home" element={<MentorHomePage />} />
-          <Route path="mentor-meetings" element={<MentorMeetingsPage />} />
-          <Route path="student-home" element={<StudentHomePage />} />
-          <Route path="student-goals" element={<StudentGoalsPage />} />
-          <Route path="student-progress" element={<StudentProgressPage />} />
-          {/* Add additional protected routes as needed */}
-        </Route>
-      </Routes>
-    </Router>
+    <MeetingsProvider>
+      <Router>
+        <Routes>
+          <Route path="/sign-in" element={<SignInPage onSignIn={handleSignIn} />} />
+          <Route path="/sign-up" element={<SignUpPage onSignUp={handleSignUp} />} />
+          {/* Protected routes with navigation */}
+          <Route element={<ProtectedLayout userRole={userRole} onSignOut={handleSignOut} />}>
+            <Route index element={<MentorHomePage />} /> // Assuming this is the default page after login
+            <Route path="/account" element={<AccountPage />} />
+            <Route path="mentor-home" element={<MentorHomePage />} />
+            <Route path="/students/:studentId" element={<StudentPage />} /> {/* Dynamic route */}
+            <Route path="/students/:studentId/goals" element={<MentorStudentPage />} /> {/* Dynamic route */}
+            <Route path="/students/:studentId/progress" element={<MentorProgressPage />} /> {/* Dynamic route */}
+            <Route path="mentor-meetings" element={<MentorMeetingsPage />} />
+            <Route path="student-home" element={<StudentHomePage />} />
+            <Route path="student-goals" element={<StudentGoalsPage />} />
+            <Route path="student-progress" element={<StudentProgressPage />} />
+            {/* Add additional protected routes as needed */}
+          </Route>
+        </Routes>
+      </Router>
+    </MeetingsProvider>
   );
 }
 

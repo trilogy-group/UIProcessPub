@@ -37,14 +37,15 @@ const NavigationMenu = ({ userRole, onSignOut }) => {
 
   const menuItems = userRole === 'mentor'
     ? [
-      { name: 'Mentor Home', path: '/mentor-home' },
-      { name: "Mentor's Meetings", path: '/mentor-meetings' },
+      { name: 'Home', path: '/mentor-home' },
+      { name: "Meetings", path: '/mentor-meetings' },
       // Add other mentor specific items here
     ]
     : [
-      { name: 'Student Home', path: '/student-home' },
-      { name: "Student's Goals", path: '/student-goals' },
-      { name: "Student's Progress", path: '/student-progress' },
+      { name: 'Home', path: '/student-home' },
+      { name: "Check-In", path: '/student-check-in' },
+      { name: "Progress", path: '/student-progress' },
+      { name: "Check-In History", path: '/student-history' },
       // Add other student specific items here
     ];
 

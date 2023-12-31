@@ -1,6 +1,4 @@
 import React from 'react';
-import GoalsList from '../components/GoalList';
-import AddGoal from '../components/AddGoal';
 
 const sampleGoals = [
     // Physical Goals
@@ -30,13 +28,12 @@ const sampleGoals = [
   
 
 
-function StudentGoalsPage() {
+function StudentCheckInPage() {
     return (<div className='w-80 max-h-screen flex flex-col'>
-        <AddGoal/>
-        <GoalsList goals={sampleGoals}/>
+      
     </div>
         
     );
 }
 
-export default StudentGoalsPage;
+export default StudentCheckInPage;

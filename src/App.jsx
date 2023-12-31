@@ -5,7 +5,7 @@ import SignUpPage from './pages/SignUpPage';
 import MentorHomePage from './pages/MentorHomePage';
 import MentorMeetingsPage from './pages/MentorMeetingsPage';
 import StudentHomePage from './pages/StudentHomePage';
-import StudentGoalsPage from './pages/StudentGoalsPage';
+import StudentCheckInPage from './pages/StudentCheckInPage';
 import StudentProgressPage from './pages/StudentProgressPage';
 import NavigationMenu from './components/NavigationMenu';
 import { MeetingsProvider } from './contexts/MeetingsContext';
@@ -47,7 +47,7 @@ function App() {
             <Route path="/students/:studentId/progress" element={<MentorProgressPage />} /> {/* Dynamic route */}
             <Route path="mentor-meetings" element={<MentorMeetingsPage />} />
             <Route path="student-home" element={<StudentHomePage />} />
-            <Route path="student-goals" element={<StudentGoalsPage />} />
+            <Route path="student-check-in" element={<StudentCheckInPage />} />
             <Route path="student-progress" element={<StudentProgressPage />} />
             {/* Add additional protected routes as needed */}
           </Route>

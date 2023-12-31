@@ -12,6 +12,20 @@
   line-height: 1.2em;
 }
 
+.calendar-day-meeting-indicator {
+  width: 7px;
+  height: 7px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.react-calendar__tile {
+  position: relative;
+}
+
 .react-calendar__navigation button {
   @apply text-gray-600 bg-transparent min-w-0 text-base py-1 mt-2;
 }

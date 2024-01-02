@@ -55,7 +55,7 @@ const GoalCard = ({ category, lastScore, overallTrend, percentageChange, latestF
                 </div>
                 <div className="flex items-center gap-4 text-sm">
                     <div className="flex gap-2 items-center font-semibold">
-                        Overall Trend: <span className="text-green-500"> {overallTrend}</span>
+                        Overall Trend: <span className={trendClass}> {overallTrend}</span>
                     </div>
                 </div>
 

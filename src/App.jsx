@@ -13,6 +13,8 @@ import StudentPage from './pages/StudentPage';
 import AccountPage from './pages/AccountPage';
 import MentorStudentPage from './pages/MentorStudentPage';
 import MentorProgressPage from './pages/MentorProgressPage';
+import StudentCheckInHistoryPage from './pages/StudentCheckInHistoryPage';
+import AIChatPage from './pages/AIChatPage';
 // Import other necessary components...
 
 function App() {
@@ -41,14 +43,17 @@ function App() {
           <Route element={<ProtectedLayout userRole={userRole} onSignOut={handleSignOut} />}>
             <Route index element={<MentorHomePage />} /> // Assuming this is the default page after login
             <Route path="/account" element={<AccountPage />} />
-            <Route path="mentor-home" element={<MentorHomePage />} />
+            <Route path="/ai-chat" element={<AIChatPage />} />
+            <Route path="/mentor-home" element={<MentorHomePage />} />
             <Route path="/students/:studentId" element={<StudentPage />} /> {/* Dynamic route */}
             <Route path="/students/:studentId/goals" element={<MentorStudentPage />} /> {/* Dynamic route */}
             <Route path="/students/:studentId/progress" element={<MentorProgressPage />} /> {/* Dynamic route */}
-            <Route path="mentor-meetings" element={<MentorMeetingsPage />} />
-            <Route path="student-home" element={<StudentHomePage />} />
-            <Route path="student-check-in" element={<StudentCheckInPage />} />
-            <Route path="student-progress" element={<StudentProgressPage />} />
+            <Route path="/mentor-meetings" element={<MentorMeetingsPage />} />
+            <Route path="/student-home" element={<StudentHomePage />} />
+            <Route path="/student-check-in" element={<StudentCheckInPage />} />
+            <Route path="/student-progress" element={<StudentProgressPage />} />
+            <Route path="/student-history" element={<StudentCheckInHistoryPage />} />
+
             {/* Add additional protected routes as needed */}
           </Route>
         </Routes>

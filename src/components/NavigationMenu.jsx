@@ -39,6 +39,7 @@ const NavigationMenu = ({ userRole, onSignOut }) => {
     ? [
       { name: 'Home', path: '/mentor-home' },
       { name: "Meetings", path: '/mentor-meetings' },
+      { name: "AI Chat", path: '/ai-chat' },
       // Add other mentor specific items here
     ]
     : [
@@ -46,6 +47,8 @@ const NavigationMenu = ({ userRole, onSignOut }) => {
       { name: "Check-In", path: '/student-check-in' },
       { name: "Progress", path: '/student-progress' },
       { name: "Check-In History", path: '/student-history' },
+      { name: "AI Chat", path: '/ai-chat' },
+
       // Add other student specific items here
     ];
 

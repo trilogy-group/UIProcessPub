@@ -14,7 +14,7 @@ const sampleGoals = [
   {
     category: "Academic",
     lastScore: "6.9",
-    overallTrend: "Negative",
+    overallTrend: "Neutral",
     percentageChange: "0%",
     latestFeedback: "Progress is steady. Stay consistent and focused."
   },

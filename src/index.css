@@ -12,6 +12,37 @@
    display: none;
  }
  
+ .active-tab {
+  /* Active tab styles */
+  background-color: white;
+  border-right: 1rem solid transparent;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  position: relative;
+  z-index: 10;
+}
+
+.active-tab::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -1rem; /* This should be the width of the border-right */
+  bottom: 0;
+  width: 1rem;
+  background-color: #D2B48C; /* This should match the details pane background */
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  z-index: -1;
+}
+
+/* Details panel that sits next to the tabs */
+.details-panel {
+  background-color: #D2B48C; /* Or whatever your content area background color is */
+  margin-left: -1rem; /* Overlap the details panel with the active tab */
+  padding-left: 1rem; /* Adjust padding to account for the overlapped area */
+  z-index: 0; /* Ensure the details panel is below the active tab */
+}
+
  
  .meeting-button {
    background-color: #f0f0f0;

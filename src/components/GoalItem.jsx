@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Chip from './Chip';
-import { FaCheckCircle, FaChartLine, FaHistory } from 'react-icons/fa'; // Import FontAwesome icons
+import { FaArrowRight } from 'react-icons/fa'; // Import the continue/progress icon
+
 
 
 const GoalItem = ({ goal, category, feedback, onCheckIn, onViewProgress, onViewCheckIns, isFeedbackVisible, handleFeedbackToggle }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isOverflowing, setIsOverflowing] = useState(false);
     const feedbackRef = useRef(null);
+
 
     useEffect(() => {
         if (feedbackRef.current) {
@@ -20,7 +22,7 @@ const GoalItem = ({ goal, category, feedback, onCheckIn, onViewProgress, onViewC
     };
 
     return (
-        <div className="flex flex-col border p-4 my-1 rounded-lg">
+        <div className="flex flex-col border p-4 m-2 rounded-lg">
             <div className="flex flex-col overflow-auto"> {/* Adjust this div */}
                 <input
                     type="text"
@@ -32,17 +34,9 @@ const GoalItem = ({ goal, category, feedback, onCheckIn, onViewProgress, onViewC
 
             <div className="flex justify-between items-center">
                 <Chip text={category} />
-                <div className='flex flex-row'>
-                    <button className='flex items-center justify-center w-fit mx-2 h-8 px-4 py-[7px] text-base font-medium text-black rounded-full transition-all duration-150 bg-white shadow-md' onClick={onCheckIn}>
-                        <FaCheckCircle /> {/* Check In Icon */}
-                    </button>
-                    <button className='flex items-center justify-center w-fit mx-2 h-8 px-4 py-[7px] text-base font-medium text-black rounded-full transition-all duration-150 bg-white shadow-md' onClick={onCheckIn}>
-                    <FaChartLine /> {/* View Progress Icon */}
-                    </button>
-                    <button className='flex items-center justify-center w-fit mx-2 h-8 px-4 py-[7px] text-base font-medium text-black rounded-full transition-all duration-150 bg-white shadow-md' onClick={onCheckIn}>
-                        <FaHistory /> {/* Past Check-Ins Icon */}
-                    </button>
-                </div>
+                <button className='flex items-center justify-center w-fit mx-2 h-8 px-4 py-[7px] text-base font-medium text-black rounded-full transition-all duration-150 bg-white shadow-md' onClick={onCheckIn}>
+    <FaArrowRight /> {/* Continue/Progress Icon */}
+</button>
             </div>
             <div>
                 <button className="btn btn-outline mt-1" onClick={handleFeedbackToggle}>Feedback</button>

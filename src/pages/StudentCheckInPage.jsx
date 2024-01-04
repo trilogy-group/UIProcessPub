@@ -4,6 +4,7 @@ import { FaRegEdit } from 'react-icons/fa'; // Font Awesome icon for editing, si
 import Chip from '../components/Chip';
 import VideoModal from '../components/VideoModal';
 import CheckInFormModal from '../components/CheckInFormModal';
+import AudioRecorderModal from '../components/AudioRecorderModal';
 import Portal from '../components/Portal';
 
 
@@ -24,6 +25,8 @@ const StudentCheckInPage = () => {
   const [isVideoModalOpen, setVideoModalOpen] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [isFormModalOpen, setFormModalOpen] = useState(false);
+  const [isAudioModalOpen, setAudioModalOpen] = useState(false);
+
 
   let mediaRecorder;
   let recordedChunks = [];
@@ -112,6 +115,17 @@ const StudentCheckInPage = () => {
     console.log(formData); // Here you would handle the submitted data
   };
 
+    const handleAudioFormSubmit = (audioData) => {
+        // Handle the audio data, e.g., save it or send it to a server
+        setAudioModalOpen(false); // Close the modal after submitting
+    };
+
+    // Function to open the audio recorder modal
+    const openAudioModal = () => {
+        setAudioModalOpen(true);
+    };
+
+
   return (
     <>
       <Portal>
@@ -119,7 +133,7 @@ const StudentCheckInPage = () => {
           <CheckInFormModal
             isOpen={isFormModalOpen}
             onClose={() => setFormModalOpen(false)}
-            onSubmit={handleFormSubmit}
+            onSubmit={handleAudioFormSubmit}
           />
         )}
         {isVideoModalOpen && <VideoModal
@@ -129,6 +143,13 @@ const StudentCheckInPage = () => {
           onStopRecording={stopRecording}
           isRecording={isRecording} // Pass the recording state to the modal
         />}
+        {isAudioModalOpen && (
+          <AudioRecorderModal
+            isOpen={isAudioModalOpen}
+            onClose={() => setAudioModalOpen(false)}
+            onSubmit={handleFormSubmit}
+          />
+        )}
       </Portal>
       <div className="flex items-center justify-center w-full h-screen"> {/* Full-screen container with centered content */}
         <form onSubmit={handleSubmit} className="w-full md:max-w-md lg:w-1/2 mx-auto p-4 bg-white rounded shadow-2xl"> {/* Width set to 50% and max width to constrain size */}
@@ -157,7 +178,7 @@ const StudentCheckInPage = () => {
             </button>
             <button
               type="button"
-              onClick={() => handleCheckInMethodChange('audio')}
+              onClick={openAudioModal}
               className="btn flex items-center space-x-2 bg-white text-gray-700 border border-gray-300 shadow-sm px-4 py-2 rounded-full hover:bg-gray-50"
             >
               <MdKeyboardVoice className="text-lg" />

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Portal from './Portal';
 
-const AddMeetingModal = ({ selectedDate, onClose, onAddMeeting }) => {
+const AddMeetingModal = ({ selectedDate, onClose, onAddMeeting, prefilledStudentName}) => {
     const [meetingDetails, setMeetingDetails] = useState({
         start: selectedDate.start,
         end: selectedDate.end,
+        student: prefilledStudentName || '',
     });
 
     const [isAllDay, setIsAllDay] = useState(selectedDate.allDay);
@@ -145,6 +146,7 @@ const AddMeetingModal = ({ selectedDate, onClose, onAddMeeting }) => {
                                 type="text"
                                 name="student"
                                 placeholder="Student Attending"
+                                defaultValue={prefilledStudentName || ''}
                                 onChange={handleChange}
                                 className="w-full bg-transparent border-b border-dodger-blue focus:bg-light-grey focus:outline-none"
                                 required={true}

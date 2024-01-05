@@ -67,7 +67,7 @@ abbr[title] {
 }
 
 .react-calendar__tile--active {
-  @apply bg-red-500 rounded-md font-bold text-white !important;
+  @apply bg-red-500 rounded-md font-bold text-white;
 }
 
 .react-calendar__tile--active:enabled:hover,

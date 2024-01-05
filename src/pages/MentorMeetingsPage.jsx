@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -8,6 +8,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import AddMeetingModal from '../components/AddMeetingModal';
 import MeetingModal from '../components/MeetingModal';
 import { useMeetings } from '../contexts/MeetingsContext';
+import { useLocation } from 'react-router-dom';
+import { format } from 'date-fns';
 
 
 
@@ -17,22 +19,33 @@ const MentorMeetingsPage = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const { meetings, handleAddMeeting } = useMeetings();
+    const location = useLocation();
+    const [prefilledStudentName, setPrefilledStudentName] = useState('');
 
-    const renderDayHeader = (dateInfo) => {
-        // Create a new date object from the dateInfo.date value
-        const date = new Date(dateInfo.date);
-        const options = { weekday: 'short', day: 'numeric' };
-        const dateStr = new Intl.DateTimeFormat('en-US', options).format(date);
 
-        const [weekday, day] = dateStr.split(' ');
+    useEffect(() => {
+        if (location.state?.studentName) {
+            setPrefilledStudentName(location.state.studentName);
+        }
+    }, [location.state]);
 
-        return (
-            <div style={{ textAlign: 'center' }}>
-                <div>{day}</div>
-                <div>{weekday}</div>
+    const renderDayHeader = (headerInfo) => {
+        const view = headerInfo.view.type;
+        const date = headerInfo.date;
+    
+        if (view === 'dayGridMonth') {
+          // Format for dayGridMonth view: Only weekday
+          return <span>{format(date, 'EEEE')}</span>;
+        } else if (view === 'timeGridWeek') {
+          // Format for timeGridWeek view: Weekday on top of the date
+          return (
+            <div>
+              <div>{format(date, 'EEEE')}</div>
+              <div>{format(date, 'd')}</div>
             </div>
-        );
-    };
+          );
+        }
+      };
 
 
     const Header = () => (
@@ -80,6 +93,8 @@ const MentorMeetingsPage = () => {
                 <Header />
                 <main className="px-4 py-2 overflow-auto" style={{ height: 'calc(100vh - 60px)' }}>
                     <FullCalendar
+                        timeZone='local'
+                        locale={'en'}
                         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                         initialView="dayGridMonth"
                         events={meetings}
@@ -94,6 +109,7 @@ const MentorMeetingsPage = () => {
                         titleFormat={{ year: 'numeric', month: 'long' }} // Customize the title format
                         eventColor="DodgerBlue" // Set default event color
                         selectable={true}
+                        firstDay={0}
                         select={handleRangeSelect}
                         height="100%"
                     />
@@ -113,7 +129,7 @@ const MentorMeetingsPage = () => {
                             selectedDate={selectedDate}
                             onClose={() => setIsAddModalOpen(false)}
                             onAddMeeting={handleAddMeeting}
-                            mousePosition={mousePosition}
+                            prefilledStudentName={prefilledStudentName} // Pass the prefilled name
                         />
                     )}
                 </AnimatePresence>

@@ -10,7 +10,7 @@ const NavButton = ({ to, end, children }) => (
     to={to}
     end={end}
     className={({ isActive }) =>
-      `text-left w-full px-4 py-2 text-base font-medium text-black rounded-full transition-all duration-150 ${isActive ? 'bg-white shadow-md' : 'hover:bg-gray-100'
+      `text-left w-full px-4 py-2 my-1 text-base font-medium text-black rounded-full transition-all duration-150 ${isActive ? 'bg-white shadow-md' : 'hover:bg-gray-100'
       }`}
   >
     {children}

@@ -21,7 +21,12 @@ const StudentCard = ({ id, name, imageSrc, email }) => {
         </div>
       </Link>
       <div className="flex justify-center items-center p-2">
-        <NavLink to={`/students/${id}/meetings`} className={buttonClass} aria-label="Meetings">
+        <NavLink
+          to={"/mentor-meetings" }
+          state={{ studentName: name }}
+          className={buttonClass}
+          aria-label="Meetings"
+        >
           <FaRegCalendarAlt className="text-gray-600" />
         </NavLink>
         <NavLink to={`/students/${id}/progress`} className={buttonClass} aria-label="Progress">

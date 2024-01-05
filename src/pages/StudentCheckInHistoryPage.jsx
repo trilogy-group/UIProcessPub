@@ -1,5 +1,6 @@
 import React from 'react';
 import GoalsList from '../components/GoalList';
+import VideoPlayer from '../components/VideoPlayer';
 
 
 const sampleGoals = [
@@ -21,12 +22,76 @@ const sampleGoals = [
     { id: 16, goal: "Call family members weekly", category: "Social", feedback: "Regular family contact is wonderful. Try video calls too.", createdDate: "2023-08-25" }
 ];
 
+const students = [
+    { id: '1', name: 'John Doe', imageSrc: 'https://static.livebooks.com/a3bda11fe04d4e2b91a0c0e497555041/i/f202266b6c23445da9eb412b7a9106e4/1/4SoifmQp7LJ6yDtMuFY2x/kids_headshots_Atlanta_marietta.jpg' },
+    { id: '2', name: 'Jane Smith', imageSrc: 'https://images.squarespace-cdn.com/content/v1/555bd2ece4b00127a2b1264f/1620704048811-1CYPTG3HKGVWIEER1AEJ/1_kids_acting_headshot_for_rayna_by_michael_verity_photography.jpg?format=750w' },
+    { id: '3', name: 'Alice Johnson', imageSrc: 'https://images.squarespace-cdn.com/content/v1/5c4d7e227e3c3a6ec70a5ac7/749442e8-9f2a-423f-abf8-6dacbb512156/Child+Actors+Headshots+Los+Angeles%2CLondon%2C+New+York.+%28RORY+LEWIS+Photographer%29' },
+  ];
 
 const StudentCheckInHistoryPage = () => {
-    return (<div className='w-80 max-h-screen flex flex-col'>
-        <GoalsList goals={sampleGoals}/>
+    return (<div className='flex'>
+        <div className='w-80 max-h-screen flex flex-col'>
+            <GoalsList goals={sampleGoals} />
+        </div>
+        <div className='flex flex-col m-4'>
+            <div className="grid gap-6">
+                <h2 className="font-semibold text-xl">Feed</h2>
+                <div className="text-sm flex items-start gap-4">
+                    <span className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
+                        <img className="w-full object-cover" alt="@user1" src={students[0].imageSrc}/>
+                    </span>
+                    <div className="grid gap-1.5">
+                        <div className="flex items-center gap-2">
+                            <div className="font-semibold">user1</div>
+                            <div className="text-gray-500 text-xs dark:text-gray-400">5 minutes ago</div>
+                        </div>
+                        <div className="w-full aspect-[16/9]">
+                            <div><VideoPlayer src='src/assets/video.mp4'/></div>
+                        </div>
+                    </div>
+                </div>
+                <div className="text-sm flex items-start gap-4 ml-14">
+                    <span className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 border">
+                        <img className="w-full object-cover" alt="@user2" src={students[1].imageSrc} />
+                    </span>
+                    <div className="grid gap-1.5">
+                        <div className="flex items-center gap-2">
+                            <div className="font-semibold">user2</div>
+                            <div className="text-gray-500 text-xs dark:text-gray-400">3 minutes ago</div>
+                        </div>
+                        <div>Great work! Look forward to our meeting. Keep it up!.</div>
+                    </div>
+                </div>
+                <div className="text-sm flex items-start gap-4 ml-28">
+                    <span className="relative flex shrink-0 overflow-hidden rounded-full w-8 h-8 border">
+                        <img className="w-full object-cover" alt="@user3" src={students[0].imageSrc}/>
+                    </span>
+                    <div className="grid gap-1.5">
+                        <div className="flex items-center gap-2">
+                            <div className="font-semibold">user3</div>
+                            <div className="text-gray-500 text-xs dark:text-gray-400">1 minute ago</div>
+                        </div>
+                        <div>@user2 Thanks!</div>
+                    </div>
+                </div>
+                <div className="text-sm flex items-start gap-4">
+                    <span className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
+                        <img className="w-full object-cover" alt="@user4" src={students[2].imageSrc} />
+                    </span>
+                    <div className="grid gap-1.5">
+                        <div className="flex items-center gap-2">
+                            <div className="font-semibold">user4</div>
+                            <div className="text-gray-500 text-xs dark:text-gray-400">Just now</div>
+                        </div>
+                        <div>Check out my latest podcast episode!</div>
+                        <div className="w-full aspect-[16/9]">
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-        
     );
 };
 

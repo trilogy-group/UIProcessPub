@@ -10,6 +10,12 @@ const GoalsList = ({ goals }) => {
     const [showFilterOptions, setShowFilterOptions] = useState(false);
     const [sortType, setSortType] = useState(null);
     const [selectedCategories, setSelectedCategories] = useState([]);
+    const [activeGoalId, setActiveGoalId] = useState(1);
+
+
+    const handleGoalSelect = (id) => {
+        setActiveGoalId(id);
+    };
 
 
     const handleFeedbackToggle = (id) => {
@@ -129,6 +135,8 @@ const GoalsList = ({ goals }) => {
                         {...goal}
                         isFeedbackVisible={activeFeedbackId === goal.id}
                         handleFeedbackToggle={() => handleFeedbackToggle(goal.id)}
+                        isSelected={goal.id === activeGoalId}
+                        onSelect={() => handleGoalSelect(goal.id)}
                     />
                 ))}
             </div>

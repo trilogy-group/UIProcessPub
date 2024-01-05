@@ -33,9 +33,9 @@ const StudentCheckInHistoryPage = () => {
         <div className='w-80 max-h-screen flex flex-col'>
             <GoalsList goals={sampleGoals} />
         </div>
-        <div className='flex flex-col m-4'>
+        <div className='flex flex-col my-4 mx-auto'>
             <div className="grid gap-6">
-                <h2 className="font-semibold text-xl">Feed</h2>
+                <h2 className="text-xl"><span className='font-bold'>Check-In:</span> Run 5km thrice a week </h2>
                 <div className="text-sm flex items-start gap-4">
                     <span className="relative flex shrink-0 overflow-hidden rounded-full w-10 h-10 border">
                         <img className="w-full object-cover" alt="@user1" src={students[0].imageSrc}/>
